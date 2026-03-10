@@ -1,0 +1,28 @@
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
+
+const path = require("path");
+
+const authRoutes = require("./routes/auth.routes");
+const incidentRoutes = require("./routes/incident.routes");
+const alertRoutes = require("./routes/alert.routes");
+const errorHandler = require("./middleware/error.middleware");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(errorHandler);
+
+app.use("/api/incidents", incidentRoutes);
+app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+app.use("/api/alerts", alertRoutes);
+
+app.use("/api/auth", authRoutes);
+
+app.get("/", (req, res) => {
+  res.json({ message: "API running" });
+});
+
+module.exports = app;
