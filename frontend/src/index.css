@@ -1,0 +1,37 @@
+@import url("https://unpkg.com/leaflet/dist/leaflet.css");
+
+@import "tailwindcss";
+
+/* Your custom colors as CSS variables */
+:root {
+  --neonGreen: #7cfc00;
+  --darkBg: #0f111a;
+  --lightGreen: #a8ff60;
+}
+
+/* Optional: helper classes for convenience */
+.bg-darkBg {
+  background-color: var(--darkBg);
+}
+.text-neonGreen {
+  color: var(--neonGreen);
+}
+.bg-lightGreen {
+  background-color: var(--lightGreen);
+}
+.hover\:bg-lightGreen:hover {
+  background-color: var(--lightGreen);
+}
+
+/* Optional helper classes for gradient buttons */
+.bg-gradient-submit {
+  background: linear-gradient(to right, var(--neonGreen), var(--lightGreen));
+}
+
+.hover\:bg-gradient-submit:hover {
+  background: linear-gradient(to right, var(--lightGreen), var(--neonGreen));
+}
+
+/* .filter-btn {
+  @apply px-3 py-1 border border-neonGreen text-neonGreen rounded hover:bg-neonGreen hover:text-black transition;
+} */

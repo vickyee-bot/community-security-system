@@ -9,6 +9,15 @@ const io = initSocket(server);
 
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
+  socket.on("sendMessage", (message) => {
+    io.emit("newMessage", message);
+  });
+});
+
+// 🔴 ADD THIS MIDDLEWARE
+app.use((req, res, next) => {
+  req.io = io;
+  next();
 });
 
 const PORT = process.env.PORT || 5000;

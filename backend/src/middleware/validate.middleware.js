@@ -1,17 +1,23 @@
-const validate = (schema) => {
-  return (req, res, next) => {
-    try {
-      schema.parse(req.body);
-      next();
-    } catch (err) {
-      // Zod error messages
-      const errors = err.errors.map((e) => ({
-        field: e.path[0],
-        message: e.message,
+const validate = (schema) => (req, res, next) => {
+  try {
+    // validate body
+    const result = schema.safeParse(req.body);
+
+    if (!result.success) {
+      const errors = result.error.issues.map((err) => ({
+        field: err.path[0],
+        message: err.message,
       }));
-      res.status(400).json({ errors });
+
+      return res.status(400).json({ errors });
     }
-  };
+
+    req.body = result.data;
+
+    next();
+  } catch (err) {
+    next(err);
+  }
 };
 
 module.exports = validate;

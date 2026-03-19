@@ -1,7 +1,7 @@
 const authService = require("../services/auth.service");
 const generateToken = require("../utils/jwt");
 
-const register = async (req, res) => {
+const register = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
@@ -18,7 +18,7 @@ const register = async (req, res) => {
   }
 };
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 

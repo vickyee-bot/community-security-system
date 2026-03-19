@@ -6,7 +6,8 @@ const upload = require("../middleware/upload.middleware");
 const { incidentSchema } = require("../validation/incident.validation");
 const validate = require("../middleware/validate.middleware");
 
-const authenticate = require("../middleware/auth.middleware");
+const { deleteIncident } = require("../controllers/incident.controller");
+const { authenticate } = require("../middleware/auth.middleware");
 const authorizeRoles = require("../middleware/role.middleware");
 
 router.post(
@@ -14,7 +15,7 @@ router.post(
   authenticate,
   authorizeRoles("RESIDENT"),
   upload.single("image"),
-  validate(incidentSchema),
+  // validate(incidentSchema),
   incidentController.createIncident,
 );
 
@@ -27,6 +28,13 @@ router.patch(
   authenticate,
   authorizeRoles("OFFICER", "ADMIN"),
   incidentController.updateStatus,
+);
+
+router.delete(
+  "/:id",
+  authenticate,
+  authorizeRoles("ADMIN"),
+  incidentController.deleteIncident,
 );
 
 module.exports = router;

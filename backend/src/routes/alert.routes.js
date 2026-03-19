@@ -3,7 +3,7 @@ const router = express.Router();
 
 const alertController = require("../controllers/alert.controller");
 
-const authenticate = require("../middleware/auth.middleware");
+const { authenticate } = require("../middleware/auth.middleware");
 const authorizeRoles = require("../middleware/role.middleware");
 
 router.post(

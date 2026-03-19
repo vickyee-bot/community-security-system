@@ -24,13 +24,17 @@ model User {
   incidents Incident[]
 
   alerts Alert[]
+
+  sentMessages Message[] @relation("SentMessages")
+
+  receivedMessages Message[] @relation("ReceivedMessages")
 }
 
 model Incident {
   id           Int      @id @default(autoincrement())
   title        String
   description  String
-  type         String
+  type         IncidentType
   latitude     Float
   longitude    Float
   status       IncidentStatus @default(PENDING)
@@ -41,6 +45,8 @@ model Incident {
   reportedBy   User @relation(fields: [reportedById], references: [id])
 
   createdAt DateTime @default(now())
+
+  messages Message[]
 }
 
 enum Role {
@@ -55,6 +61,13 @@ enum IncidentStatus {
   RESOLVED
 }
 
+enum IncidentType {
+  THEFT
+  ACCIDENT
+  FIRE
+  VANDALISM
+}
+
 model Alert {
   id        Int      @id @default(autoincrement())
   title     String
@@ -65,4 +78,17 @@ model Alert {
   createdBy   User @relation(fields: [createdById], references: [id])
 
   createdAt DateTime @default(now())
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  content    String
+  senderId   Int
+  receiverId Int
+  incidentId Int?      // optional, a message may belong to an incident
+  createdAt  DateTime @default(now())
+
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  incident   Incident? @relation(fields: [incidentId], references: [id])
 }

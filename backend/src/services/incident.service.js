@@ -51,9 +51,16 @@ const updateIncidentStatus = async (id, status) => {
   });
 };
 
+const deleteIncident = async (id) => {
+  return prisma.incident.delete({
+    where: { id: Number(id) },
+  });
+};
+
 module.exports = {
   createIncident,
   getAllIncidents,
   getIncidentById,
   updateIncidentStatus,
+  deleteIncident,
 };
