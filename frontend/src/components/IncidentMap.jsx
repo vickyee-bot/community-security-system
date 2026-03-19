@@ -2,7 +2,12 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import IncidentMarkers from "./IncidentMarkers";
 import MapLegend from "./MapLegend";
 
-export default function IncidentMap({ incidents, latitude, longitude }) {
+export default function IncidentMap({
+  incidents,
+  latitude,
+  longitude,
+  setSelectedIncident,
+}) {
   return (
     <div className="flex-1 h-full relative">
       <MapContainer
@@ -12,7 +17,10 @@ export default function IncidentMap({ incidents, latitude, longitude }) {
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-        <IncidentMarkers incidents={incidents} />
+        <IncidentMarkers
+          incidents={incidents}
+          setSelectedIncident={setSelectedIncident}
+        />
       </MapContainer>
 
       <MapLegend />

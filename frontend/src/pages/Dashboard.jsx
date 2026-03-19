@@ -138,6 +138,7 @@ export default function Dashboard() {
             incidents={filteredIncidents}
             latitude={form.latitude}
             longitude={form.longitude}
+            setSelectedIncident={setSelectedIncident}
           />
         </div>
 

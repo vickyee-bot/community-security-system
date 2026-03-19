@@ -1,7 +1,7 @@
 import { Marker, Popup } from "react-leaflet";
 import { getMarkerIcon } from "../utils/markerIcons";
 
-export default function IncidentMarkers({ incidents }) {
+export default function IncidentMarkers({ incidents, setSelectedIncident }) {
   return (
     <>
       {incidents.map((incident) => (
@@ -9,6 +9,9 @@ export default function IncidentMarkers({ incidents }) {
           key={incident.id}
           position={[incident.latitude, incident.longitude]}
           icon={getMarkerIcon(incident.type)}
+          eventHandlers={{
+            click: () => setSelectedIncident(incident),
+          }}
         >
           <Popup>
             <strong>{incident.title}</strong>

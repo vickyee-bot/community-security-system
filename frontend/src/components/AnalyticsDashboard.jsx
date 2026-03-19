@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../api/axios";
+import { useNavigate } from "react-router-dom";
 
 import {
   BarChart,
@@ -12,6 +13,7 @@ import {
 
 export default function AnalyticsDashboard() {
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -48,6 +50,13 @@ export default function AnalyticsDashboard() {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      <button
+        onClick={() => navigate("/analytics")}
+        // className="mt-4 px-4 py-2 bg-neonGreen text-black rounded"
+        className="bg-gradient-submit py-2 rounded font-bold text-black w-full"
+      >
+        View Full Analytics
+      </button>
     </div>
   );
 }

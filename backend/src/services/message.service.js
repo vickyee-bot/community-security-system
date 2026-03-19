@@ -42,7 +42,28 @@ const getMessages = async (userId, currentUserId) => {
   });
 };
 
+const getMessagesByIncident = async (incidentId) => {
+  return prisma.message.findMany({
+    where: {
+      incidentId: Number(incidentId),
+    },
+    include: {
+      sender: {
+        select: {
+          id: true,
+          name: true,
+          role: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "asc",
+    },
+  });
+};
+
 module.exports = {
   sendMessage,
   getMessages,
+  getMessagesByIncident,
 };

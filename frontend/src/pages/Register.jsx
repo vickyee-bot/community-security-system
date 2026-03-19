@@ -61,10 +61,19 @@ export default function Register() {
 
         <button
           type="submit"
-          className="w-full py-3 bg-gradient-to-r from-neonGreen to-lightGreen rounded-lg text-black font-bold hover:from-lightGreen hover:to-neonGreen transition-all"
+          className="w-full py-3 bg-gradient-submit hover:bg-gradient-submit rounded-lg text-black font-bold transition-all"
         >
           Register
         </button>
+        <p className="text-gray-400 text-sm mt-4 text-center">
+          Already have an account?{" "}
+          <button
+            onClick={() => navigate("/login")}
+            className="text-neonGreen hover:underline"
+          >
+            Login here
+          </button>
+        </p>
       </form>
     </div>
   );

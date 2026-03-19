@@ -26,7 +26,7 @@ export default function Login() {
     <div className="flex justify-center items-center h-screen bg-darkBg">
       <form
         onSubmit={handleSubmit}
-        className="bg-[#1C1F2B] p-10 rounded-xl shadow-xl w-96 border border-neonGreen"
+        className="bg-gray-900/90 p-10 rounded-2xl shadow-xl w-96 border border-neonGreen/50 backdrop-blur-sm"
       >
         <h2 className="text-3xl text-neonGreen font-bold mb-6 text-center">
           Login
@@ -38,7 +38,7 @@ export default function Login() {
           placeholder="Email"
           value={form.email}
           onChange={handleChange}
-          className="w-full p-3 mb-4 rounded-lg border border-neonGreen bg-darkBg text-white focus:outline-none focus:ring-2 focus:ring-lightGreen"
+          className="w-full p-3 mb-4 rounded-lg border border-neonGreen bg-darkBg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lightGreen"
         />
         <input
           type="password"
@@ -46,17 +46,26 @@ export default function Login() {
           placeholder="Password"
           value={form.password}
           onChange={handleChange}
-          className="w-full p-3 mb-4 rounded-lg border border-neonGreen bg-darkBg text-white focus:outline-none focus:ring-2 focus:ring-lightGreen"
+          className="w-full p-3 mb-4 rounded-lg border border-neonGreen bg-darkBg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-lightGreen"
         />
 
-        {error && <p className="text-red-500 mb-4">{error}</p>}
+        {error && <p className="text-red-400 mb-4">{error}</p>}
 
         <button
           type="submit"
-          className="w-full py-3 bg-gradient-to-r from-neonGreen to-lightGreen rounded-lg text-black font-bold hover:from-lightGreen hover:to-neonGreen transition-all"
+          className="w-full py-3 bg-gradient-submit hover:bg-gradient-submit rounded-lg text-black font-bold transition-all"
         >
           Login
         </button>
+        <p className="text-gray-400 text-sm mt-4 text-center">
+          Don't have an account?{" "}
+          <button
+            onClick={() => navigate("/register")}
+            className="text-neonGreen hover:underline"
+          >
+            Register here
+          </button>
+        </p>
       </form>
     </div>
   );
