@@ -33,7 +33,7 @@ const LandingPage = () => {
             FAQ
           </a>
           <button
-            className="bg-neonGreen hover:bg-lightGreen text-black px-5 py-2 rounded-md text-sm font-semibold transition"
+            className="bg-lightGreen hover:bg-neonGreen text-black px-5 py-2 rounded-md text-sm font-semibold transition"
             onClick={() => navigate("/login")}
           >
             Get started
@@ -58,35 +58,45 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-16 md:py-24">
-        <div className="max-w-4xl">
-          {/* Badge with neon green */}
-          <div className="inline-block bg-neonGreen/10 text-neonGreen text-sm font-semibold px-4 py-1 rounded-full mb-6 border border-neonGreen/40">
-            Keeping our communities safe since 2026
+      <section className="relative bg-darkBg">
+        {/* Background image with overlay */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-80"
+          style={{ backgroundImage: "url('/bg-hero.jpg')" }} // 👈 Replace with your image
+        ></div>
+        <div className="absolute inset-0 bg-black/50"></div>{" "}
+        {/* Extra dark overlay for better contrast */}
+        {/* Content (original hero section) */}
+        <div className="relative z-10 container mx-auto px-6 py-16 md:py-24">
+          <div className="max-w-4xl">
+            {/* Badge with neon green */}
+            <div className="inline-block bg-neonGreen/10 text-neonGreen text-sm font-semibold px-4 py-1 rounded-full mb-6 border border-neonGreen/40">
+              Keeping our communities safe since 2026
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              Community Security <br />& Incident Reporting System
+            </h1>
+            <p className="text-lg md:text-xl text-gray-400 mt-6 max-w-2xl">
+              2025 Gartner® Magic Quadrant™ for Community Safety Platforms.
+              Real‑time incident reporting, instant alerts, and seamless
+              coordination between residents and authorities.
+            </p>
+            <div className="flex flex-wrap gap-4 mt-8">
+              {/* <button className="bg-gradient-submit hover:bg-gradient-submit text-black px-8 py-3 rounded-md text-lg font-semibold flex items-center gap-2 transition">
+                Download report
+              </button> */}
+              <button
+                className="border border-neonGreen hover:bg-neonGreen/20 text-neonGreen px-8 py-3 rounded-md text-lg font-semibold transition"
+                onClick={() => navigate("/login")}
+              >
+                Get started
+              </button>
+            </div>
+            <p className="text-sm text-gray-500 mt-4 flex items-center gap-1">
+              <span className="h-1.5 w-1.5 bg-neonGreen rounded-full"></span>
+              Used by 150+ communities and local authorities
+            </p>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-            Community Security <br />& Incident Reporting System
-          </h1>
-          <p className="text-lg md:text-xl text-gray-400 mt-6 max-w-2xl">
-            2025 Gartner® Magic Quadrant™ for Community Safety Platforms.
-            Real‑time incident reporting, instant alerts, and seamless
-            coordination between residents and authorities.
-          </p>
-          <div className="flex flex-wrap gap-4 mt-8">
-            <button className="bg-gradient-submit hover:bg-gradient-submit text-black px-8 py-3 rounded-md text-lg font-semibold flex items-center gap-2 transition">
-              Download report
-            </button>
-            <button
-              className="border border-neonGreen hover:bg-neonGreen/20 text-neonGreen px-8 py-3 rounded-md text-lg font-semibold transition"
-              onClick={() => navigate("/login")}
-            >
-              Get started
-            </button>
-          </div>
-          <p className="text-sm text-gray-500 mt-4 flex items-center gap-1">
-            <span className="h-1.5 w-1.5 bg-neonGreen rounded-full"></span>
-            Used by 150+ communities and local authorities
-          </p>
         </div>
       </section>
 
